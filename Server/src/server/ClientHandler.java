@@ -8,7 +8,7 @@ import java.io.OutputStreamWriter;
 import java.net.Socket;
 import java.util.ArrayList;
 
-public class ClientHandler implements Runnable {
+public final class ClientHandler implements Runnable {
 
     public static ArrayList<ClientHandler> clientHandlers = new ArrayList<>();
     public Socket socket;
@@ -23,7 +23,7 @@ public class ClientHandler implements Runnable {
             this.buffReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             this.name = buffReader.readLine();
             clientHandlers.add(this);
-            boradcastMessage("Servidor " + name + " ha entrado en el chat");
+            broadcastMessage("Personita " + name + " ha entrado en el chat");
         } catch (IOException e) {
             closeAll(socket, buffReader, buffWriter);
         }
@@ -35,7 +35,7 @@ public class ClientHandler implements Runnable {
         while (socket.isConnected()) {
             try {
                 messageFromClient = buffReader.readLine();
-                boradcastMessage(messageFromClient);
+                broadcastMessage(messageFromClient);
             } catch (IOException e) {
                 closeAll(socket, buffReader, buffWriter);
                 break;
@@ -43,7 +43,7 @@ public class ClientHandler implements Runnable {
         }
     }
 
-    public void boradcastMessage(String messageToSend) {
+    public void broadcastMessage(String messageToSend) {
         for (ClientHandler clientHandler : clientHandlers) {
             try {
                 if (!clientHandler.name.equals(name)) {
@@ -59,7 +59,7 @@ public class ClientHandler implements Runnable {
 
     public void removeClientHandler() {
         clientHandlers.remove(this);
-        boradcastMessage("Servidor " + name + " Se ha ido");
+        broadcastMessage("Servidor " + name + " Se ha ido");
     }
 
     public void closeAll(Socket socket, BufferedReader buffReader, BufferedWriter buffWriter) {
@@ -78,4 +78,5 @@ public class ClientHandler implements Runnable {
             e.getStackTrace();
         }
     }
+
 }
