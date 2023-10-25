@@ -11,6 +11,180 @@ import java.util.Scanner;
 
 public class Client {
 
+    private static String Cifrar(String messageToSend) {
+        String mnsjN = "";
+
+        for (int i = 0; i < messageToSend.length(); i++) {
+
+            String c = "";
+
+            if (messageToSend.charAt(i) == 'a') {
+                c = "O2";
+            } else if (messageToSend.charAt(i) == 'A') {
+                c = "2T";
+            } else if (messageToSend.charAt(i) == 'b') {
+                c = "G1";
+            } else if (messageToSend.charAt(i) == 'B') {
+                c = "2G";
+            } else if (messageToSend.charAt(i) == 'c') {
+                c = "J1";
+            } else if (messageToSend.charAt(i) == 'C') {
+                c = "2S";
+            } else if (messageToSend.charAt(i) == 'd') {
+                c = "I1";
+            } else if (messageToSend.charAt(i) == 'D') {
+                c = "2Y";
+            } else if (messageToSend.charAt(i) == 'e') {
+                c = "C1";
+            } else if (messageToSend.charAt(i) == 'E') {
+                c = "2B";
+            } else if (messageToSend.charAt(i) == 'f') {
+                c = "A1";
+            } else if (messageToSend.charAt(i) == 'F') {
+                c = "2R";
+            } else if (messageToSend.charAt(i) == 'g') {
+                c = "S1";
+            } else if (messageToSend.charAt(i) == 'G') {
+                c = "2I";
+            } else if (messageToSend.charAt(i) == 'h') {
+                c = "Z1";
+            } else if (messageToSend.charAt(i) == 'H') {
+                c = "2Q";
+            } else if (messageToSend.charAt(i) == 'i') {
+                c = "N1";
+            } else if (messageToSend.charAt(i) == 'I') {
+                c = "1q";
+            } else if (messageToSend.charAt(i) == 'j') {
+                c = "F1";
+            } else if (messageToSend.charAt(i) == 'J') {
+                c = "1X";
+            } else if (messageToSend.charAt(i) == 'k') {
+                c = "T1";
+            } else if (messageToSend.charAt(i) == 'K') {
+                c = "1Z";
+            } else if (messageToSend.charAt(i) == 'l') {
+                c = "E0";
+            } else if (messageToSend.charAt(i) == 'L') {
+                c = "1G";
+            } else if (messageToSend.charAt(i) == 'm') {
+                c = "W0";
+            } else if (messageToSend.charAt(i) == 'M') {
+                c = "1O";
+            } else if (messageToSend.charAt(i) == 'n') {
+                c = "M0";
+            } else if (messageToSend.charAt(i) == 'N') {
+                c = "1Y";
+            } else if (messageToSend.charAt(i) == 'ñ') {
+                c = "V0";
+            } else if (messageToSend.charAt(i) == 'Ñ') {
+                c = "1S";
+            } else if (messageToSend.charAt(i) == 'o') {
+                c = "X0";
+            } else if (messageToSend.charAt(i) == 'O') {
+                c = "1J";
+            } else if (messageToSend.charAt(i) == 'p') {
+                c = "H0";
+            } else if (messageToSend.charAt(i) == 'P') {
+                c = "1I";
+            } else if (messageToSend.charAt(i) == 'q') {
+                c = "D0";
+            } else if (messageToSend.charAt(i) == 'Q') {
+                c = "1Q";
+            } else if (messageToSend.charAt(i) == 'r') {
+                c = "P0";
+            } else if (messageToSend.charAt(i) == 'R') {
+                c = "0q";
+            } else if (messageToSend.charAt(i) == 's') {
+                c = "L0";
+            } else if (messageToSend.charAt(i) == 'S') {
+                c = "0W";
+            } else if (messageToSend.charAt(i) == 't') {
+                c = "K2";
+            } else if (messageToSend.charAt(i) == 'T') {
+                c = "0P";
+            } else if (messageToSend.charAt(i) == 'u') {
+                c = "R2";
+            } else if (messageToSend.charAt(i) == 'U') {
+                c = "0G";
+            } else if (messageToSend.charAt(i) == 'v') {
+                c = "Y2";
+            } else if (messageToSend.charAt(i) == 'V') {
+                c = "0S";
+            } else if (messageToSend.charAt(i) == 'w') {
+                c = "U2";
+            } else if (messageToSend.charAt(i) == 'W') {
+                c = "0E";
+            } else if (messageToSend.charAt(i) == 'x') {
+                c = "Q2";
+            } else if (messageToSend.charAt(i) == 'X') {
+                c = "0B";
+            } else if (messageToSend.charAt(i) == 'y') {
+                c = "B2";
+            } else if (messageToSend.charAt(i) == 'Y') {
+                c = "0C";
+            } else if (messageToSend.charAt(i) == 'z') {
+                c = "J2";
+            } else if (messageToSend.charAt(i) == 'Z') {
+                c = "0I";
+            } else if (messageToSend.charAt(i) == ' ') {
+                c = "00";
+            } else if (messageToSend.charAt(i) == '1') {
+                c = "Sz";
+            } else if (messageToSend.charAt(i) == '2') {
+                c = "Ay";
+            } else if (messageToSend.charAt(i) == '3') {
+                c = "Fx";
+            } else if (messageToSend.charAt(i) == '4') {
+                c = "Ew";
+            } else if (messageToSend.charAt(i) == '5') {
+                c = "If";
+            } else if (messageToSend.charAt(i) == '6') {
+                c = "Te";
+            } else if (messageToSend.charAt(i) == '7') {
+                c = "Od";
+            } else if (messageToSend.charAt(i) == '8') {
+                c = "Lc";
+            } else if (messageToSend.charAt(i) == '9') {
+                c = "Ub";
+            } else if (messageToSend.charAt(i) == '0') {
+                c = "Da";
+            } else if (messageToSend.charAt(i) == ':') {
+                c = "01";
+            } else if (messageToSend.charAt(i) == '!') {
+                c = "02";
+            } else if (messageToSend.charAt(i) == '$') {
+                c = "03";
+            } else if (messageToSend.charAt(i) == '#') {
+                c = "04";
+            } else if (messageToSend.charAt(i) == '*') {
+                c = "05";
+            } else if (messageToSend.charAt(i) == '%') {
+                c = "06";
+            } else if (messageToSend.charAt(i) == '&') {
+                c = "07";
+            } else if (messageToSend.charAt(i) == '/') {
+                c = "08";
+            } else if (messageToSend.charAt(i) == '(') {
+                c = "09";
+            } else if (messageToSend.charAt(i) == ')') {
+                c = "10";
+            } else if (messageToSend.charAt(i) == '=') {
+                c = "11";
+            } else if (messageToSend.charAt(i) == '¿') {
+                c = "12";
+            } else if (messageToSend.charAt(i) == '¡') {
+                c = "13";
+            } else if (messageToSend.charAt(i) == '?') {
+                c = "14";
+            } else {
+                c = "";
+            }
+            mnsjN = mnsjN + c;
+
+        }
+        return mnsjN;
+    }
+
     private Socket socket;
     private BufferedReader buffReader;
     private BufferedWriter buffWriter;
@@ -267,179 +441,7 @@ public class Client {
         Client client = new Client(socket, name);
         client.readMessage();
         client.sendMessage();
-    }
-
-    private String Cifrar(String messageToSend) {
-        String mnsjN = "";
-
-        for (int i = 0; i < messageToSend.length(); i++) {
-
-            String c = "";
-
-            if (messageToSend.charAt(i) == 'a') {
-                c = "O2";
-            } else if (messageToSend.charAt(i) == 'A') {
-                c = "2T";
-            } else if (messageToSend.charAt(i) == 'b') {
-                c = "G1";
-            } else if (messageToSend.charAt(i) == 'B') {
-                c = "2G";
-            } else if (messageToSend.charAt(i) == 'c') {
-                c = "J1";
-            } else if (messageToSend.charAt(i) == 'C') {
-                c = "2S";
-            } else if (messageToSend.charAt(i) == 'd') {
-                c = "I1";
-            } else if (messageToSend.charAt(i) == 'D') {
-                c = "2Y";
-            } else if (messageToSend.charAt(i) == 'e') {
-                c = "C1";
-            } else if (messageToSend.charAt(i) == 'E') {
-                c = "2B";
-            } else if (messageToSend.charAt(i) == 'f') {
-                c = "A1";
-            } else if (messageToSend.charAt(i) == 'F') {
-                c = "2R";
-            } else if (messageToSend.charAt(i) == 'g') {
-                c = "S1";
-            } else if (messageToSend.charAt(i) == 'G') {
-                c = "2I";
-            } else if (messageToSend.charAt(i) == 'h') {
-                c = "Z1";
-            } else if (messageToSend.charAt(i) == 'H') {
-                c = "2Q";
-            } else if (messageToSend.charAt(i) == 'i') {
-                c = "N1";
-            } else if (messageToSend.charAt(i) == 'I') {
-                c = "1q";
-            } else if (messageToSend.charAt(i) == 'j') {
-                c = "F1";
-            } else if (messageToSend.charAt(i) == 'J') {
-                c = "1X";
-            } else if (messageToSend.charAt(i) == 'k') {
-                c = "T1";
-            } else if (messageToSend.charAt(i) == 'K') {
-                c = "1Z";
-            } else if (messageToSend.charAt(i) == 'l') {
-                c = "E0";
-            } else if (messageToSend.charAt(i) == 'L') {
-                c = "1G";
-            } else if (messageToSend.charAt(i) == 'm') {
-                c = "W0";
-            } else if (messageToSend.charAt(i) == 'M') {
-                c = "1O";
-            } else if (messageToSend.charAt(i) == 'n') {
-                c = "M0";
-            } else if (messageToSend.charAt(i) == 'N') {
-                c = "1Y";
-            } else if (messageToSend.charAt(i) == 'ñ') {
-                c = "V0";
-            } else if (messageToSend.charAt(i) == 'Ñ') {
-                c = "1S";
-            } else if (messageToSend.charAt(i) == 'o') {
-                c = "X0";
-            } else if (messageToSend.charAt(i) == 'O') {
-                c = "1J";
-            } else if (messageToSend.charAt(i) == 'p') {
-                c = "H0";
-            } else if (messageToSend.charAt(i) == 'P') {
-                c = "1I";
-            } else if (messageToSend.charAt(i) == 'q') {
-                c = "D0";
-            } else if (messageToSend.charAt(i) == 'Q') {
-                c = "1Q";
-            } else if (messageToSend.charAt(i) == 'r') {
-                c = "P0";
-            } else if (messageToSend.charAt(i) == 'R') {
-                c = "0q";
-            } else if (messageToSend.charAt(i) == 's') {
-                c = "L0";
-            } else if (messageToSend.charAt(i) == 'S') {
-                c = "0W";
-            } else if (messageToSend.charAt(i) == 't') {
-                c = "K2";
-            } else if (messageToSend.charAt(i) == 'T') {
-                c = "0P";
-            } else if (messageToSend.charAt(i) == 'u') {
-                c = "R2";
-            } else if (messageToSend.charAt(i) == 'U') {
-                c = "0G";
-            } else if (messageToSend.charAt(i) == 'v') {
-                c = "Y2";
-            } else if (messageToSend.charAt(i) == 'V') {
-                c = "0S";
-            } else if (messageToSend.charAt(i) == 'w') {
-                c = "U2";
-            } else if (messageToSend.charAt(i) == 'W') {
-                c = "0E";
-            } else if (messageToSend.charAt(i) == 'x') {
-                c = "Q2";
-            } else if (messageToSend.charAt(i) == 'X') {
-                c = "0B";
-            } else if (messageToSend.charAt(i) == 'y') {
-                c = "B2";
-            } else if (messageToSend.charAt(i) == 'Y') {
-                c = "0C";
-            } else if (messageToSend.charAt(i) == 'z') {
-                c = "J2";
-            } else if (messageToSend.charAt(i) == 'Z') {
-                c = "0I";
-            } else if (messageToSend.charAt(i) == ' ') {
-                c = "00";
-            } else if (messageToSend.charAt(i) == '1') {
-                c = "Sz";
-            } else if (messageToSend.charAt(i) == '2') {
-                c = "Ay";
-            } else if (messageToSend.charAt(i) == '3') {
-                c = "Fx";
-            } else if (messageToSend.charAt(i) == '4') {
-                c = "Ew";
-            } else if (messageToSend.charAt(i) == '5') {
-                c = "If";
-            } else if (messageToSend.charAt(i) == '6') {
-                c = "Te";
-            } else if (messageToSend.charAt(i) == '7') {
-                c = "Od";
-            } else if (messageToSend.charAt(i) == '8') {
-                c = "Lc";
-            } else if (messageToSend.charAt(i) == '9') {
-                c = "Ub";
-            } else if (messageToSend.charAt(i) == '0') {
-                c = "Da";
-            } else if (messageToSend.charAt(i) == ':') {
-                c = "01";
-            } else if (messageToSend.charAt(i) == '!') {
-                c = "02";
-            } else if (messageToSend.charAt(i) == '$') {
-                c = "03";
-            } else if (messageToSend.charAt(i) == '#') {
-                c = "04";
-            } else if (messageToSend.charAt(i) == '*') {
-                c = "05";
-            } else if (messageToSend.charAt(i) == '%') {
-                c = "06";
-            } else if (messageToSend.charAt(i) == '&') {
-                c = "07";
-            } else if (messageToSend.charAt(i) == '/') {
-                c = "08";
-            } else if (messageToSend.charAt(i) == '(') {
-                c = "09";
-            } else if (messageToSend.charAt(i) == ')') {
-                c = "10";
-            } else if (messageToSend.charAt(i) == '=') {
-                c = "11";
-            } else if (messageToSend.charAt(i) == '¿') {
-                c = "12";
-            } else if (messageToSend.charAt(i) == '¡') {
-                c = "13";
-            } else if (messageToSend.charAt(i) == '?') {
-                c = "14";
-            } else {
-                c = "";
-            }
-            mnsjN = mnsjN + c;
-
-        }
-        return mnsjN;
+        
+        
     }
 }
