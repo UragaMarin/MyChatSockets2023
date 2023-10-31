@@ -7,6 +7,8 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public final class ClientHandler implements Runnable {
 
@@ -15,6 +17,7 @@ public final class ClientHandler implements Runnable {
     private BufferedReader buffReader;
     private BufferedWriter buffWriter;
     private String name;
+    private static final Map<Character, String> mapaDeSustitucionCifrado  = new HashMap<>();
 
     public ClientHandler(Socket socket) {
         try {
@@ -23,7 +26,7 @@ public final class ClientHandler implements Runnable {
             this.buffReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             this.name = buffReader.readLine();
             clientHandlers.add(this);
-            String nombre = Cifrado(name);
+            String nombre = Cifrar(mapaDeSustitucionCifrado, name);
             String bienvenida = "1IC1P0L0X0M0N1K2O200  " + nombre + "  00Z1O200C1M0K2P0O2I1X000O2E000J1Z1O2K2";
             broadcastMessage(bienvenida);
         } catch (IOException e) {
@@ -61,7 +64,7 @@ public final class ClientHandler implements Runnable {
 
     public void removeClientHandler() {
         clientHandlers.remove(this);
-        String nombre = Cifrado(name);
+        String nombre = Cifrar(mapaDeSustitucionCifrado, name);
         broadcastMessage("1IC1P0L0X0M0N1K2O200 " + nombre + " 00L0C100Z1O200N1I1X000I1C1E000J1Z1O2K2");
     }
 
@@ -82,178 +85,137 @@ public final class ClientHandler implements Runnable {
         }
     }
 
-    private String Cifrado(String name) {
-        String mnsjN = "";
+    private void crearMapas(){
+        mapaDeSustitucionCifrado.put('a', "O2");
+        mapaDeSustitucionCifrado.put('A', "2T");
+        mapaDeSustitucionCifrado.put('b', "G1");
+        mapaDeSustitucionCifrado.put('B', "2G");
+        mapaDeSustitucionCifrado.put('c', "J1");
+        mapaDeSustitucionCifrado.put('d', "I1");
+        mapaDeSustitucionCifrado.put('e', "C1");
+        mapaDeSustitucionCifrado.put('f', "A1");
+        mapaDeSustitucionCifrado.put('g', "S1");
+        mapaDeSustitucionCifrado.put('h', "Z1");
+        mapaDeSustitucionCifrado.put('i', "N1");
+        mapaDeSustitucionCifrado.put('j', "F1");
+        mapaDeSustitucionCifrado.put('k', "T1");
+        mapaDeSustitucionCifrado.put('l', "E0");
+        mapaDeSustitucionCifrado.put('m', "W0");
+        mapaDeSustitucionCifrado.put('n', "M0");
+        mapaDeSustitucionCifrado.put('ñ', "V0");
+        mapaDeSustitucionCifrado.put('o', "X0");
+        mapaDeSustitucionCifrado.put('p', "H0");
+        mapaDeSustitucionCifrado.put('q', "D0");
+        mapaDeSustitucionCifrado.put('r', "P0");
+        mapaDeSustitucionCifrado.put('s', "L0");
+        mapaDeSustitucionCifrado.put('t', "K2");
+        mapaDeSustitucionCifrado.put('u', "R2");
+        mapaDeSustitucionCifrado.put('v', "Y2");
+        mapaDeSustitucionCifrado.put('w', "U2");
+        mapaDeSustitucionCifrado.put('x', "Q2");
+        mapaDeSustitucionCifrado.put('y', "B2");
+        mapaDeSustitucionCifrado.put('z', "J2");
+        mapaDeSustitucionCifrado.put('C', "2S");
+        mapaDeSustitucionCifrado.put('D', "2Y");
+        mapaDeSustitucionCifrado.put('E', "2B");
+        mapaDeSustitucionCifrado.put('F', "2R");
+        mapaDeSustitucionCifrado.put('G', "2I");
+        mapaDeSustitucionCifrado.put('H', "2Q");
+        mapaDeSustitucionCifrado.put('I', "1q");
+        mapaDeSustitucionCifrado.put('J', "1X");
+        mapaDeSustitucionCifrado.put('K', "1Z");
+        mapaDeSustitucionCifrado.put('L', "1G");
+        mapaDeSustitucionCifrado.put('M', "1O");
+        mapaDeSustitucionCifrado.put('N', "1Y");
+        mapaDeSustitucionCifrado.put('Ñ', "1S");
+        mapaDeSustitucionCifrado.put('O', "1J");
+        mapaDeSustitucionCifrado.put('P', "1I");
+        mapaDeSustitucionCifrado.put('Q', "1Q");
+        mapaDeSustitucionCifrado.put('R', "0q");
+        mapaDeSustitucionCifrado.put('S', "0W");
+        mapaDeSustitucionCifrado.put('T', "0P");
+        mapaDeSustitucionCifrado.put('U', "0G");
+        mapaDeSustitucionCifrado.put('V', "0S");
+        mapaDeSustitucionCifrado.put('W', "0E");
+        mapaDeSustitucionCifrado.put('X', "0B");
+        mapaDeSustitucionCifrado.put('Y', "0C");
+        mapaDeSustitucionCifrado.put('Z', "0I");
+        mapaDeSustitucionCifrado.put('1', "Sz");
+        mapaDeSustitucionCifrado.put('2', "Ay");
+        mapaDeSustitucionCifrado.put('3', "Fx");
+        mapaDeSustitucionCifrado.put('4', "Ew");
+        mapaDeSustitucionCifrado.put('5', "iF");
+        mapaDeSustitucionCifrado.put('6', "Te");
+        mapaDeSustitucionCifrado.put('7', "Od");
+        mapaDeSustitucionCifrado.put('8', "Lc");
+        mapaDeSustitucionCifrado.put('9', "Ub");
+        mapaDeSustitucionCifrado.put('0', "Da");
+        mapaDeSustitucionCifrado.put(' ', "00");
+        mapaDeSustitucionCifrado.put(':', "01");
+        mapaDeSustitucionCifrado.put('!', "02");
+        mapaDeSustitucionCifrado.put('$', "03");
+        mapaDeSustitucionCifrado.put('#', "04");
+        mapaDeSustitucionCifrado.put('*', "05");
+        mapaDeSustitucionCifrado.put('%', "06");
+        mapaDeSustitucionCifrado.put('&', "07");
+        mapaDeSustitucionCifrado.put('/', "08");
+        mapaDeSustitucionCifrado.put('(', "09");
+        mapaDeSustitucionCifrado.put(')', "10");
+        mapaDeSustitucionCifrado.put('=', "11");
+        mapaDeSustitucionCifrado.put('¿', "12");
+        mapaDeSustitucionCifrado.put('¡', "13");
+        mapaDeSustitucionCifrado.put('?', "14");
+        mapaDeSustitucionCifrado.put(';', "15");
+        mapaDeSustitucionCifrado.put('<', "16");
+        mapaDeSustitucionCifrado.put('>', "17");
+        mapaDeSustitucionCifrado.put('-', "18");
+        mapaDeSustitucionCifrado.put('_', "19");
+        mapaDeSustitucionCifrado.put('+', "20");
+        mapaDeSustitucionCifrado.put('~', "21");
+        mapaDeSustitucionCifrado.put('^', "22");
+        mapaDeSustitucionCifrado.put('á', "aA");
+        mapaDeSustitucionCifrado.put('é', "eE");
+        mapaDeSustitucionCifrado.put('í', "iI");
+        mapaDeSustitucionCifrado.put('ó', "oO");
+        mapaDeSustitucionCifrado.put('ú', "uU");
+        mapaDeSustitucionCifrado.put('Á', "Aa");
+        mapaDeSustitucionCifrado.put('É', "Ee");
+        mapaDeSustitucionCifrado.put('Í', "Ii");
+        mapaDeSustitucionCifrado.put('Ó', "Oo");
+        mapaDeSustitucionCifrado.put('Ú', "Uu");
+        mapaDeSustitucionCifrado.put('ä', "aa");
+        mapaDeSustitucionCifrado.put('ë', "ee");
+        mapaDeSustitucionCifrado.put('ï', "ii");
+        mapaDeSustitucionCifrado.put('ö', "oo");
+        mapaDeSustitucionCifrado.put('ü', "uu");
+        mapaDeSustitucionCifrado.put('Ä', "AA");
+        mapaDeSustitucionCifrado.put('Ë', "EE");
+        mapaDeSustitucionCifrado.put('Ï', "II");
+        mapaDeSustitucionCifrado.put('Ö', "OO");
+        mapaDeSustitucionCifrado.put('Ü', "UU");
+        mapaDeSustitucionCifrado.put('\'', "24");
+        mapaDeSustitucionCifrado.put('{', "25");
+        mapaDeSustitucionCifrado.put('}', "26");
+        mapaDeSustitucionCifrado.put('[', "27");
+        mapaDeSustitucionCifrado.put(']', "28");
+        mapaDeSustitucionCifrado.put('\"', "29");
+        mapaDeSustitucionCifrado.put('\\', "30");
+        mapaDeSustitucionCifrado.put('.', "31");
+        mapaDeSustitucionCifrado.put(',', "32");
+    }
 
-        for (int i = 0; i < name.length(); i++) {
+    private static String Cifrar(Map<Character, String> mapa, String mensaje) {
+        StringBuilder mensajeCifrado = new StringBuilder();
 
-            String c = "";
-
-            if (name.charAt(i) == 'a') {
-                c = "O2";
-            } else if (name.charAt(i) == 'A') {
-                c = "2T";
-            } else if (name.charAt(i) == 'b') {
-                c = "G1";
-            } else if (name.charAt(i) == 'B') {
-                c = "2G";
-            } else if (name.charAt(i) == 'c') {
-                c = "J1";
-            } else if (name.charAt(i) == 'C') {
-                c = "2S";
-            } else if (name.charAt(i) == 'd') {
-                c = "I1";
-            } else if (name.charAt(i) == 'D') {
-                c = "2Y";
-            } else if (name.charAt(i) == 'e') {
-                c = "C1";
-            } else if (name.charAt(i) == 'E') {
-                c = "2B";
-            } else if (name.charAt(i) == 'f') {
-                c = "A1";
-            } else if (name.charAt(i) == 'F') {
-                c = "2R";
-            } else if (name.charAt(i) == 'g') {
-                c = "S1";
-            } else if (name.charAt(i) == 'G') {
-                c = "2I";
-            } else if (name.charAt(i) == 'h') {
-                c = "Z1";
-            } else if (name.charAt(i) == 'H') {
-                c = "2Q";
-            } else if (name.charAt(i) == 'i') {
-                c = "N1";
-            } else if (name.charAt(i) == 'I') {
-                c = "1q";
-            } else if (name.charAt(i) == 'j') {
-                c = "F1";
-            } else if (name.charAt(i) == 'J') {
-                c = "1X";
-            } else if (name.charAt(i) == 'k') {
-                c = "T1";
-            } else if (name.charAt(i) == 'K') {
-                c = "1Z";
-            } else if (name.charAt(i) == 'l') {
-                c = "E0";
-            } else if (name.charAt(i) == 'L') {
-                c = "1G";
-            } else if (name.charAt(i) == 'm') {
-                c = "W0";
-            } else if (name.charAt(i) == 'M') {
-                c = "1O";
-            } else if (name.charAt(i) == 'n') {
-                c = "M0";
-            } else if (name.charAt(i) == 'N') {
-                c = "1Y";
-            } else if (name.charAt(i) == 'ñ') {
-                c = "V0";
-            } else if (name.charAt(i) == 'Ñ') {
-                c = "1S";
-            } else if (name.charAt(i) == 'o') {
-                c = "X0";
-            } else if (name.charAt(i) == 'O') {
-                c = "1J";
-            } else if (name.charAt(i) == 'p') {
-                c = "H0";
-            } else if (name.charAt(i) == 'P') {
-                c = "1I";
-            } else if (name.charAt(i) == 'q') {
-                c = "D0";
-            } else if (name.charAt(i) == 'Q') {
-                c = "1Q";
-            } else if (name.charAt(i) == 'r') {
-                c = "P0";
-            } else if (name.charAt(i) == 'R') {
-                c = "0q";
-            } else if (name.charAt(i) == 's') {
-                c = "L0";
-            } else if (name.charAt(i) == 'S') {
-                c = "0W";
-            } else if (name.charAt(i) == 't') {
-                c = "K2";
-            } else if (name.charAt(i) == 'T') {
-                c = "0P";
-            } else if (name.charAt(i) == 'u') {
-                c = "R2";
-            } else if (name.charAt(i) == 'U') {
-                c = "0G";
-            } else if (name.charAt(i) == 'v') {
-                c = "Y2";
-            } else if (name.charAt(i) == 'V') {
-                c = "0S";
-            } else if (name.charAt(i) == 'w') {
-                c = "U2";
-            } else if (name.charAt(i) == 'W') {
-                c = "0E";
-            } else if (name.charAt(i) == 'x') {
-                c = "Q2";
-            } else if (name.charAt(i) == 'X') {
-                c = "0B";
-            } else if (name.charAt(i) == 'y') {
-                c = "B2";
-            } else if (name.charAt(i) == 'Y') {
-                c = "0C";
-            } else if (name.charAt(i) == 'z') {
-                c = "J2";
-            } else if (name.charAt(i) == 'Z') {
-                c = "0I";
-            } else if (name.charAt(i) == ' ') {
-                c = "00";
-            } else if (name.charAt(i) == '1') {
-                c = "Sz";
-            } else if (name.charAt(i) == '2') {
-                c = "Ay";
-            } else if (name.charAt(i) == '3') {
-                c = "Fx";
-            } else if (name.charAt(i) == '4') {
-                c = "Ew";
-            } else if (name.charAt(i) == '5') {
-                c = "If";
-            } else if (name.charAt(i) == '6') {
-                c = "Te";
-            } else if (name.charAt(i) == '7') {
-                c = "Od";
-            } else if (name.charAt(i) == '8') {
-                c = "Lc";
-            } else if (name.charAt(i) == '9') {
-                c = "Ub";
-            } else if (name.charAt(i) == '0') {
-                c = "Da";
-            } else if (name.charAt(i) == ':') {
-                c = "01";
-            } else if (name.charAt(i) == '!') {
-                c = "02";
-            } else if (name.charAt(i) == '$') {
-                c = "03";
-            } else if (name.charAt(i) == '#') {
-                c = "04";
-            } else if (name.charAt(i) == '*') {
-                c = "05";
-            } else if (name.charAt(i) == '%') {
-                c = "06";
-            } else if (name.charAt(i) == '&') {
-                c = "07";
-            } else if (name.charAt(i) == '/') {
-                c = "08";
-            } else if (name.charAt(i) == '(') {
-                c = "09";
-            } else if (name.charAt(i) == ')') {
-                c = "10";
-            } else if (name.charAt(i) == '=') {
-                c = "11";
-            } else if (name.charAt(i) == '¿') {
-                c = "12";
-            } else if (name.charAt(i) == '¡') {
-                c = "13";
-            } else if (name.charAt(i) == '?') {
-                c = "14";
+        for (int i = 0; i < mensaje.length(); i++) {
+            char caracter = mensaje.charAt(i);
+            if (mapa.containsKey(caracter)) {
+                mensajeCifrado.append(mapa.get(caracter));
             } else {
-                c = "";
+                mensajeCifrado.append(caracter);
             }
-            mnsjN = mnsjN + c;
-
         }
-        return mnsjN;
+        return mensajeCifrado.toString();
     }
 
 }

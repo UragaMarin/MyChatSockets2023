@@ -7,188 +7,154 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Client {
-
-    private static String Cifrar(String messageToSend) {
-        String mnsjN = "";
-
-        for (int i = 0; i < messageToSend.length(); i++) {
-
-            String c = "";
-
-            if (messageToSend.charAt(i) == 'a') {
-                c = "O2";
-            } else if (messageToSend.charAt(i) == 'A') {
-                c = "2T";
-            } else if (messageToSend.charAt(i) == 'b') {
-                c = "G1";
-            } else if (messageToSend.charAt(i) == 'B') {
-                c = "2G";
-            } else if (messageToSend.charAt(i) == 'c') {
-                c = "J1";
-            } else if (messageToSend.charAt(i) == 'C') {
-                c = "2S";
-            } else if (messageToSend.charAt(i) == 'd') {
-                c = "I1";
-            } else if (messageToSend.charAt(i) == 'D') {
-                c = "2Y";
-            } else if (messageToSend.charAt(i) == 'e') {
-                c = "C1";
-            } else if (messageToSend.charAt(i) == 'E') {
-                c = "2B";
-            } else if (messageToSend.charAt(i) == 'f') {
-                c = "A1";
-            } else if (messageToSend.charAt(i) == 'F') {
-                c = "2R";
-            } else if (messageToSend.charAt(i) == 'g') {
-                c = "S1";
-            } else if (messageToSend.charAt(i) == 'G') {
-                c = "2I";
-            } else if (messageToSend.charAt(i) == 'h') {
-                c = "Z1";
-            } else if (messageToSend.charAt(i) == 'H') {
-                c = "2Q";
-            } else if (messageToSend.charAt(i) == 'i') {
-                c = "N1";
-            } else if (messageToSend.charAt(i) == 'I') {
-                c = "1q";
-            } else if (messageToSend.charAt(i) == 'j') {
-                c = "F1";
-            } else if (messageToSend.charAt(i) == 'J') {
-                c = "1X";
-            } else if (messageToSend.charAt(i) == 'k') {
-                c = "T1";
-            } else if (messageToSend.charAt(i) == 'K') {
-                c = "1Z";
-            } else if (messageToSend.charAt(i) == 'l') {
-                c = "E0";
-            } else if (messageToSend.charAt(i) == 'L') {
-                c = "1G";
-            } else if (messageToSend.charAt(i) == 'm') {
-                c = "W0";
-            } else if (messageToSend.charAt(i) == 'M') {
-                c = "1O";
-            } else if (messageToSend.charAt(i) == 'n') {
-                c = "M0";
-            } else if (messageToSend.charAt(i) == 'N') {
-                c = "1Y";
-            } else if (messageToSend.charAt(i) == 'ñ') {
-                c = "V0";
-            } else if (messageToSend.charAt(i) == 'Ñ') {
-                c = "1S";
-            } else if (messageToSend.charAt(i) == 'o') {
-                c = "X0";
-            } else if (messageToSend.charAt(i) == 'O') {
-                c = "1J";
-            } else if (messageToSend.charAt(i) == 'p') {
-                c = "H0";
-            } else if (messageToSend.charAt(i) == 'P') {
-                c = "1I";
-            } else if (messageToSend.charAt(i) == 'q') {
-                c = "D0";
-            } else if (messageToSend.charAt(i) == 'Q') {
-                c = "1Q";
-            } else if (messageToSend.charAt(i) == 'r') {
-                c = "P0";
-            } else if (messageToSend.charAt(i) == 'R') {
-                c = "0q";
-            } else if (messageToSend.charAt(i) == 's') {
-                c = "L0";
-            } else if (messageToSend.charAt(i) == 'S') {
-                c = "0W";
-            } else if (messageToSend.charAt(i) == 't') {
-                c = "K2";
-            } else if (messageToSend.charAt(i) == 'T') {
-                c = "0P";
-            } else if (messageToSend.charAt(i) == 'u') {
-                c = "R2";
-            } else if (messageToSend.charAt(i) == 'U') {
-                c = "0G";
-            } else if (messageToSend.charAt(i) == 'v') {
-                c = "Y2";
-            } else if (messageToSend.charAt(i) == 'V') {
-                c = "0S";
-            } else if (messageToSend.charAt(i) == 'w') {
-                c = "U2";
-            } else if (messageToSend.charAt(i) == 'W') {
-                c = "0E";
-            } else if (messageToSend.charAt(i) == 'x') {
-                c = "Q2";
-            } else if (messageToSend.charAt(i) == 'X') {
-                c = "0B";
-            } else if (messageToSend.charAt(i) == 'y') {
-                c = "B2";
-            } else if (messageToSend.charAt(i) == 'Y') {
-                c = "0C";
-            } else if (messageToSend.charAt(i) == 'z') {
-                c = "J2";
-            } else if (messageToSend.charAt(i) == 'Z') {
-                c = "0I";
-            } else if (messageToSend.charAt(i) == ' ') {
-                c = "00";
-            } else if (messageToSend.charAt(i) == '1') {
-                c = "Sz";
-            } else if (messageToSend.charAt(i) == '2') {
-                c = "Ay";
-            } else if (messageToSend.charAt(i) == '3') {
-                c = "Fx";
-            } else if (messageToSend.charAt(i) == '4') {
-                c = "Ew";
-            } else if (messageToSend.charAt(i) == '5') {
-                c = "If";
-            } else if (messageToSend.charAt(i) == '6') {
-                c = "Te";
-            } else if (messageToSend.charAt(i) == '7') {
-                c = "Od";
-            } else if (messageToSend.charAt(i) == '8') {
-                c = "Lc";
-            } else if (messageToSend.charAt(i) == '9') {
-                c = "Ub";
-            } else if (messageToSend.charAt(i) == '0') {
-                c = "Da";
-            } else if (messageToSend.charAt(i) == ':') {
-                c = "01";
-            } else if (messageToSend.charAt(i) == '!') {
-                c = "02";
-            } else if (messageToSend.charAt(i) == '$') {
-                c = "03";
-            } else if (messageToSend.charAt(i) == '#') {
-                c = "04";
-            } else if (messageToSend.charAt(i) == '*') {
-                c = "05";
-            } else if (messageToSend.charAt(i) == '%') {
-                c = "06";
-            } else if (messageToSend.charAt(i) == '&') {
-                c = "07";
-            } else if (messageToSend.charAt(i) == '/') {
-                c = "08";
-            } else if (messageToSend.charAt(i) == '(') {
-                c = "09";
-            } else if (messageToSend.charAt(i) == ')') {
-                c = "10";
-            } else if (messageToSend.charAt(i) == '=') {
-                c = "11";
-            } else if (messageToSend.charAt(i) == '¿') {
-                c = "12";
-            } else if (messageToSend.charAt(i) == '¡') {
-                c = "13";
-            } else if (messageToSend.charAt(i) == '?') {
-                c = "14";
-            } else {
-                c = "";
-            }
-            mnsjN = mnsjN + c;
-
-        }
-        return mnsjN;
-    }
-
     private Socket socket;
     private BufferedReader buffReader;
     private BufferedWriter buffWriter;
     private String name;
+    private static final Map<Character, String> mapaDeSustitucionCifrado  = new HashMap<>();
+    private static final Map<String, Character> mapaDeSustitucionDescifrado = new HashMap<>();
+    
+    private static void crearMapas(){
+        mapaDeSustitucionCifrado.put('a', "O2");
+        mapaDeSustitucionCifrado.put('A', "2T");
+        mapaDeSustitucionCifrado.put('b', "G1");
+        mapaDeSustitucionCifrado.put('B', "2G");
+        mapaDeSustitucionCifrado.put('c', "J1");
+        mapaDeSustitucionCifrado.put('d', "I1");
+        mapaDeSustitucionCifrado.put('e', "C1");
+        mapaDeSustitucionCifrado.put('f', "A1");
+        mapaDeSustitucionCifrado.put('g', "S1");
+        mapaDeSustitucionCifrado.put('h', "Z1");
+        mapaDeSustitucionCifrado.put('i', "N1");
+        mapaDeSustitucionCifrado.put('j', "F1");
+        mapaDeSustitucionCifrado.put('k', "T1");
+        mapaDeSustitucionCifrado.put('l', "E0");
+        mapaDeSustitucionCifrado.put('m', "W0");
+        mapaDeSustitucionCifrado.put('n', "M0");
+        mapaDeSustitucionCifrado.put('ñ', "V0");
+        mapaDeSustitucionCifrado.put('o', "X0");
+        mapaDeSustitucionCifrado.put('p', "H0");
+        mapaDeSustitucionCifrado.put('q', "D0");
+        mapaDeSustitucionCifrado.put('r', "P0");
+        mapaDeSustitucionCifrado.put('s', "L0");
+        mapaDeSustitucionCifrado.put('t', "K2");
+        mapaDeSustitucionCifrado.put('u', "R2");
+        mapaDeSustitucionCifrado.put('v', "Y2");
+        mapaDeSustitucionCifrado.put('w', "U2");
+        mapaDeSustitucionCifrado.put('x', "Q2");
+        mapaDeSustitucionCifrado.put('y', "B2");
+        mapaDeSustitucionCifrado.put('z', "J2");
+        mapaDeSustitucionCifrado.put('C', "2S");
+        mapaDeSustitucionCifrado.put('D', "2Y");
+        mapaDeSustitucionCifrado.put('E', "2B");
+        mapaDeSustitucionCifrado.put('F', "2R");
+        mapaDeSustitucionCifrado.put('G', "2I");
+        mapaDeSustitucionCifrado.put('H', "2Q");
+        mapaDeSustitucionCifrado.put('I', "1q");
+        mapaDeSustitucionCifrado.put('J', "1X");
+        mapaDeSustitucionCifrado.put('K', "1Z");
+        mapaDeSustitucionCifrado.put('L', "1G");
+        mapaDeSustitucionCifrado.put('M', "1O");
+        mapaDeSustitucionCifrado.put('N', "1Y");
+        mapaDeSustitucionCifrado.put('Ñ', "1S");
+        mapaDeSustitucionCifrado.put('O', "1J");
+        mapaDeSustitucionCifrado.put('P', "1I");
+        mapaDeSustitucionCifrado.put('Q', "1Q");
+        mapaDeSustitucionCifrado.put('R', "0q");
+        mapaDeSustitucionCifrado.put('S', "0W");
+        mapaDeSustitucionCifrado.put('T', "0P");
+        mapaDeSustitucionCifrado.put('U', "0G");
+        mapaDeSustitucionCifrado.put('V', "0S");
+        mapaDeSustitucionCifrado.put('W', "0E");
+        mapaDeSustitucionCifrado.put('X', "0B");
+        mapaDeSustitucionCifrado.put('Y', "0C");
+        mapaDeSustitucionCifrado.put('Z', "0I");
+        mapaDeSustitucionCifrado.put('1', "Sz");
+        mapaDeSustitucionCifrado.put('2', "Ay");
+        mapaDeSustitucionCifrado.put('3', "Fx");
+        mapaDeSustitucionCifrado.put('4', "Ew");
+        mapaDeSustitucionCifrado.put('5', "iF");
+        mapaDeSustitucionCifrado.put('6', "Te");
+        mapaDeSustitucionCifrado.put('7', "Od");
+        mapaDeSustitucionCifrado.put('8', "Lc");
+        mapaDeSustitucionCifrado.put('9', "Ub");
+        mapaDeSustitucionCifrado.put('0', "Da");
+        mapaDeSustitucionCifrado.put(' ', "00");
+        mapaDeSustitucionCifrado.put(':', "01");
+        mapaDeSustitucionCifrado.put('!', "02");
+        mapaDeSustitucionCifrado.put('$', "03");
+        mapaDeSustitucionCifrado.put('#', "04");
+        mapaDeSustitucionCifrado.put('*', "05");
+        mapaDeSustitucionCifrado.put('%', "06");
+        mapaDeSustitucionCifrado.put('&', "07");
+        mapaDeSustitucionCifrado.put('/', "08");
+        mapaDeSustitucionCifrado.put('(', "09");
+        mapaDeSustitucionCifrado.put(')', "10");
+        mapaDeSustitucionCifrado.put('=', "11");
+        mapaDeSustitucionCifrado.put('¿', "12");
+        mapaDeSustitucionCifrado.put('¡', "13");
+        mapaDeSustitucionCifrado.put('?', "14");
+        mapaDeSustitucionCifrado.put(';', "15");
+        mapaDeSustitucionCifrado.put('<', "16");
+        mapaDeSustitucionCifrado.put('>', "17");
+        mapaDeSustitucionCifrado.put('-', "18");
+        mapaDeSustitucionCifrado.put('_', "19");
+        mapaDeSustitucionCifrado.put('+', "20");
+        mapaDeSustitucionCifrado.put('~', "21");
+        mapaDeSustitucionCifrado.put('^', "22");
+        mapaDeSustitucionCifrado.put('á', "aA");
+        mapaDeSustitucionCifrado.put('é', "eE");
+        mapaDeSustitucionCifrado.put('í', "iI");
+        mapaDeSustitucionCifrado.put('ó', "oO");
+        mapaDeSustitucionCifrado.put('ú', "uU");
+        mapaDeSustitucionCifrado.put('Á', "Aa");
+        mapaDeSustitucionCifrado.put('É', "Ee");
+        mapaDeSustitucionCifrado.put('Í', "Ii");
+        mapaDeSustitucionCifrado.put('Ó', "Oo");
+        mapaDeSustitucionCifrado.put('Ú', "Uu");
+        mapaDeSustitucionCifrado.put('ä', "aa");
+        mapaDeSustitucionCifrado.put('ë', "ee");
+        mapaDeSustitucionCifrado.put('ï', "ii");
+        mapaDeSustitucionCifrado.put('ö', "oo");
+        mapaDeSustitucionCifrado.put('ü', "uu");
+        mapaDeSustitucionCifrado.put('Ä', "AA");
+        mapaDeSustitucionCifrado.put('Ë', "EE");
+        mapaDeSustitucionCifrado.put('Ï', "II");
+        mapaDeSustitucionCifrado.put('Ö', "OO");
+        mapaDeSustitucionCifrado.put('Ü', "UU");
+        mapaDeSustitucionCifrado.put('\'', "24");
+        mapaDeSustitucionCifrado.put('{', "25");
+        mapaDeSustitucionCifrado.put('}', "26");
+        mapaDeSustitucionCifrado.put('[', "27");
+        mapaDeSustitucionCifrado.put(']', "28");
+        mapaDeSustitucionCifrado.put('\"', "29");
+        mapaDeSustitucionCifrado.put('\\', "30");
+        mapaDeSustitucionCifrado.put('.', "31");
+        mapaDeSustitucionCifrado.put(',', "32");
+        
+        for (Map.Entry<Character, String> entry : mapaDeSustitucionCifrado.entrySet()) {
+            mapaDeSustitucionDescifrado.put(entry.getValue(), entry.getKey());
+        }
+    }
+
+    private static String Cifrar(Map<Character, String> mapa, String mensaje) {
+        StringBuilder mensajeCifrado = new StringBuilder();
+
+        for (int i = 0; i < mensaje.length(); i++) {
+            char caracter = mensaje.charAt(i);
+            if (mapa.containsKey(caracter)) {
+                mensajeCifrado.append(mapa.get(caracter));
+            } else {
+                mensajeCifrado.append(caracter);
+            }
+        }
+        return mensajeCifrado.toString();
+    }
 
     public Client(Socket socket, String name) {
         try {
@@ -209,7 +175,7 @@ public class Client {
             Scanner sc = new Scanner(System.in);
             while (socket.isConnected()) {
                 String messageToSend = (name + ": " + sc.nextLine());
-                String cifrado = Cifrar(messageToSend);
+                String cifrado = Cifrar(mapaDeSustitucionCifrado, messageToSend);
                 buffWriter.write(cifrado);
                 buffWriter.newLine();
                 buffWriter.flush();
@@ -227,7 +193,7 @@ public class Client {
                 while (socket.isConnected()) {
                     try {
                         msfFromGroupChat = buffReader.readLine();
-                        String descifrado = Descifrar(msfFromGroupChat);
+                        String descifrado = Descifrar(mapaDeSustitucionDescifrado, msfFromGroupChat);
                         System.out.println(descifrado);
                     } catch (IOException e) {
                         closeAll(socket, buffReader, buffWriter);
@@ -238,183 +204,30 @@ public class Client {
         }).start();
     }
 
-    private String Descifrar(String msfFromGroupChat) {
-        String mnsjN = "";
-        int length = msfFromGroupChat.length();
+    private String Descifrar(Map<String, Character> mapa, String mensajeCifrado) {
+        StringBuilder mensajeDescifrado = new StringBuilder();
+        int index = 0;
 
-        for (int i = 0; i < length; i += 2) {
-            if (i + 1 < length) {
-                String c = Character.toString(msfFromGroupChat.charAt(i)) + Character.toString(msfFromGroupChat.charAt(i + 1));
-
-                char letra = 'a';
-
-                if (c.equals("O2")) {
-                    letra = 'a';
-                } else if (c.equals("2T")) {
-                    letra = 'A';
-                } else if (c.equals("G1")) {
-                    letra = 'b';
-                } else if (c.equals("2G")) {
-                    letra = 'B';
-                } else if (c.equals("J1")) {
-                    letra = 'c';
-                } else if (c.equals("2S")) {
-                    letra = 'C';
-                } else if (c.equals("I1")) {
-                    letra = 'd';
-                } else if (c.equals("2Y")) {
-                    letra = 'D';
-                } else if (c.equals("C1")) {
-                    letra = 'e';
-                } else if (c.equals("2B")) {
-                    letra = 'E';
-                } else if (c.equals("A1")) {
-                    letra = 'f';
-                } else if (c.equals("2R")) {
-                    letra = 'F';
-                } else if (c.equals("S1")) {
-                    letra = 'g';
-                } else if (c.equals("2I")) {
-                    letra = 'G';
-                } else if (c.equals("Z1")) {
-                    letra = 'h';
-                } else if (c.equals("2Q")) {
-                    letra = 'H';
-                } else if (c.equals("N1")) {
-                    letra = 'i';
-                } else if (c.equals("1q")) {
-                    letra = 'I';
-                } else if (c.equals("F1")) {
-                    letra = 'j';
-                } else if (c.equals("1X")) {
-                    letra = 'J';
-                } else if (c.equals("T1")) {
-                    letra = 'k';
-                } else if (c.equals("1Z")) {
-                    letra = 'K';
-                } else if (c.equals("E0")) {
-                    letra = 'l';
-                } else if (c.equals("1G")) {
-                    letra = 'L';
-                } else if (c.equals("W0")) {
-                    letra = 'm';
-                } else if (c.equals("1O")) {
-                    letra = 'M';
-                } else if (c.equals("M0")) {
-                    letra = 'n';
-                } else if (c.equals("1Y")) {
-                    letra = 'N';
-                } else if (c.equals("V0")) {
-                    letra = 'ñ';
-                } else if (c.equals("1S")) {
-                    letra = 'Ñ';
-                } else if (c.equals("X0")) {
-                    letra = 'o';
-                } else if (c.equals("1J")) {
-                    letra = 'O';
-                } else if (c.equals("H0")) {
-                    letra = 'p';
-                } else if (c.equals("1I")) {
-                    letra = 'P';
-                } else if (c.equals("D0")) {
-                    letra = 'q';
-                } else if (c.equals("1Q")) {
-                    letra = 'Q';
-                } else if (c.equals("P0")) {
-                    letra = 'r';
-                } else if (c.equals("0q")) {
-                    letra = 'R';
-                } else if (c.equals("L0")) {
-                    letra = 's';
-                } else if (c.equals("0W")) {
-                    letra = 'S';
-                } else if (c.equals("K2")) {
-                    letra = 't';
-                } else if (c.equals("0P")) {
-                    letra = 'T';
-                } else if (c.equals("R2")) {
-                    letra = 'u';
-                } else if (c.equals("0G")) {
-                    letra = 'U';
-                } else if (c.equals("Y2")) {
-                    letra = 'v';
-                } else if (c.equals("0S")) {
-                    letra = 'V';
-                } else if (c.equals("U2")) {
-                    letra = 'w';
-                } else if (c.equals("0E")) {
-                    letra = 'W';
-                } else if (c.equals("Q2")) {
-                    letra = 'x';
-                } else if (c.equals("0B")) {
-                    letra = 'X';
-                } else if (c.equals("B2")) {
-                    letra = 'y';
-                } else if (c.equals("0C")) {
-                    letra = 'Y';
-                } else if (c.equals("J2")) {
-                    letra = 'z';
-                } else if (c.equals("0I")) {
-                    letra = 'Z';
-                } else if (c.equals("00")) {
-                    letra = ' ';
-                } else if (c.equals("Sz")) {
-                    letra = '1';
-                } else if (c.equals("Ay")) {
-                    letra = '2';
-                } else if (c.equals("Fx")) {
-                    letra = '3';
-                } else if (c.equals("Ew")) {
-                    letra = '4';
-                } else if (c.equals("If")) {
-                    letra = '5';
-                } else if (c.equals("Te")) {
-                    letra = '6';
-                } else if (c.equals("Od")) {
-                    letra = '7';
-                } else if (c.equals("Lc")) {
-                    letra = '8';
-                } else if (c.equals("Ub")) {
-                    letra = '9';
-                } else if (c.equals("Da")) {
-                    letra = '0';
-                } else if (c.equals("01")) {
-                    letra = ':';
-                } else if (c.equals("02")) {
-                    letra = '!';
-                } else if (c.equals("03")) {
-                    letra = '$';
-                } else if (c.equals("04")) {
-                    letra = '#';
-                } else if (c.equals("05")) {
-                    letra = '*';
-                } else if (c.equals("06")) {
-                    letra = '%';
-                } else if (c.equals("07")) {
-                    letra = '&';
-                } else if (c.equals("08")) {
-                    letra = '/';
-                } else if (c.equals("09")) {
-                    letra = '(';
-                } else if (c.equals("10")) {
-                    letra = ')';
-                } else if (c.equals("11")) {
-                    letra = '=';
-                } else if (c.equals("12")) {
-                    letra = '¿';
-                } else if (c.equals("13")) {
-                    letra = '¡';
-                } else if (c.equals("14")) {
-                    letra = '?';
-                } else {
-                    letra = '\0';
+        while (index < mensajeCifrado.length()) {
+            boolean coincidenciaEncontrada = false;
+            for (int longitud = 2; longitud >= 1; longitud--) {
+                if (index + longitud <= mensajeCifrado.length()) {
+                    String subcadena = mensajeCifrado.substring(index, index + longitud);
+                    if (mapa.containsKey(subcadena)) {
+                        mensajeDescifrado.append(mapa.get(subcadena));
+                        index += longitud;
+                        coincidenciaEncontrada = true;
+                        break;
+                    }
                 }
-                mnsjN = mnsjN + Character.toString(letra);
-            } else {
-                mnsjN = mnsjN + Character.toString('\0');
+        }
+            if (!coincidenciaEncontrada) {
+                mensajeDescifrado.append(mensajeCifrado.charAt(index));
+                index++;
             }
         }
-        return mnsjN;
+
+        return mensajeDescifrado.toString();
     }
 
     public void closeAll(Socket socket, BufferedReader buffReader, BufferedWriter buffWriter) {
@@ -434,6 +247,7 @@ public class Client {
     }
 
     public static void main(String[] args) throws UnknownHostException, IOException {
+        crearMapas();
         Scanner sc = new Scanner(System.in);
         System.out.println("Ingresa tu nombre");
         String name = sc.nextLine();
